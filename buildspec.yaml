@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      go: 1.25
+    commands:
+      - echo "Installing Go modules"
+      - go mod tidy
+  build:
+    commands:
+      - echo "Building Lambda binary"
+      - GOOS=linux GOARCH=amd64 go build -o bootstrap main.go
+      - zip function.zip bootstrap
+  post_build:
+    commands:
+      - echo "Deploying to Lambda"
+      - aws lambda update-function-code --function-name MyGoLambda --zip-file fileb://function.zip
+
+artifacts:
+  files:
+    - function.zip
