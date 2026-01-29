@@ -15,7 +15,7 @@ phases:
   post_build:
     commands:
       - echo "Deploying to Lambda"
-      - aws lambda update-function-code --function-name MyGoLambda --zip-file fileb://function.zip
+      - aws lambda update-function-code --function-name SrihariEmployeeFetcherLambda --zip-file fileb://function.zip
 
 artifacts:
   files:
