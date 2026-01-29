@@ -3,14 +3,14 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      golang: 1.25
+      golang: 1.21
     commands:
       - echo "Installing Go modules"
       - go mod tidy
   build:
     commands:
       - echo "Building Lambda binary"
-      - GOOS=linux GOARCH=amd64 go build -o bootstrap main.go
+      - GOOS=linux GOARCH=amd64 go build -o bootstrap 
       - zip function.zip bootstrap
   post_build:
     commands:
