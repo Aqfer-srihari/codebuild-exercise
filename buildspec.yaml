@@ -16,7 +16,3 @@ phases:
     commands:
       - echo "Deploying to Lambda"
       - aws lambda update-function-code --function-name SrihariEmployeeFetcherLambda --zip-file fileb://function.zip --region us-west-2
-
-artifacts:
-  files:
-    - function.zip
