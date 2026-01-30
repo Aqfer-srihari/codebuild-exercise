@@ -13,7 +13,6 @@ func lambdaHandler(req events.APIGatewayProxyRequest) (events.APIGatewayProxyRes
 
 	return handler.LambdaRouter(req), nil
 }
-//to test codebuild
 
 func main() {
 
