@@ -5,13 +5,18 @@ phases:
     runtime-versions:
       golang: 1.21
     commands:
+      - echo "Checking Go and GLIBC version"
+      - go version
+      - ldd --version
       - go mod tidy
 
   build:
     commands:
-      - GOOS=linux GOARCH=amd64 go build -o bootstrap
+      - echo "Building Lambda binary"
+      - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o bootstrap
       - zip function.zip bootstrap
 
   post_build:
     commands:
+      - echo "Deploying to Lambda"
       - aws lambda update-function-code --function-name SrihariEmployeeFetcherLambda --zip-file fileb://function.zip --region us-west-2
