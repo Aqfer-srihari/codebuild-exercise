@@ -5,6 +5,7 @@ phases:
     runtime-versions:
       golang: 1.21
     commands:
+      - export GOTOOLCHAIN=local
       - go mod tidy
 
   build:
@@ -14,7 +15,4 @@ phases:
 
   post_build:
     commands:
-      - aws lambda update-function-code \
-          --function-name SrihariEmployeeFetcherLambda \
-          --zip-file fileb://function.zip \
-          --region us-west-2
+      - aws lambda update-function-code --function-name SrihariEmployeeFetcherLambda --zip-file fileb://function.zip --region us-west-2
